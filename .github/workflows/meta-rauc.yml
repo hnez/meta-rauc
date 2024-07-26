@@ -20,14 +20,22 @@ jobs:
           sudo apt-get update
           sudo apt-get --assume-yes dist-upgrade
           sudo apt-get --assume-yes install build-essential chrpath diffstat gawk git lz4
-      - name: Checkout
+      - name: Checkout meta-rauc
         uses: actions/checkout@v4
         with:
           path: meta-rauc
-      - name: Clone poky
-        run: git clone -b master git://git.yoctoproject.org/poky
-      - name: Clone meta-openembedded
-        run: git clone -b master https://github.com/openembedded/meta-openembedded.git
+      - name: Checkout poky
+        uses: actions/checkout@v4
+        with:
+          repository: yoctoproject/poky
+          path: poky
+          ref: master
+      - name: Checkout meta-openembedded
+        uses: actions/checkout@v4
+        with:
+          repository: openembedded/meta-openembedded
+          path: meta-openembedded
+          ref: master
       - name: Initialize build directory
         run: |
           rm -rf build/conf
