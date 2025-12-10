@@ -1,0 +1,46 @@
+recipes:
+  - recipe: "recipes-bsp/dt-utils/dt-utils_$PV.bb"
+    git_tag:
+      url: "https://git.pengutronix.de/git/tools/dt-utils"
+      version_pattern: "^v([\\d+\\.]*\\d+)$"
+      version_order: semver
+    tarball:
+      url: "http://www.pengutronix.de/software/dt-utils/download/dt-utils-$PV.tar.xz"
+
+  - recipe: "recipes-casync/casync/casync_git.bb"
+    git_branch:
+      url: "https://github.com/systemd/casync.git"
+      branch: main
+      version_pattern: "^v([\\d+\\.]*\\d+).*"
+
+  - recipes:
+      - "recipes-core/rauc/nativesdk-rauc_$PV.bb"
+      - "recipes-core/rauc/rauc_$PV.bb"
+      - "recipes-core/rauc/rauc-$PV.inc"
+      - "recipes-core/rauc/rauc-native_$PV.bb"
+    git_tag:
+      url: "https://github.com/rauc/rauc.git"
+      version_pattern: "^v([\\d+\\.]*\\d+)$"
+      version_order: semver
+    tarball:
+      url: "https://github.com/rauc/rauc/releases/download/v$PV/rauc-$PV.tar.xz"
+
+  - recipe: "recipes-core/rauc/rauc-git.inc"
+    git_branch:
+      url: "https://github.com/rauc/rauc.git"
+      branch: master
+      version_pattern: "^v([\\d+\\.]*\\d+).*"
+
+  - recipe: "recipes-support/rauc-hawkbit-updater/rauc-hawkbit-updater_git.bb"
+    git_branch:
+      url: "https://github.com/rauc/rauc-hawkbit-updater.git"
+      branch: master
+      version_pattern: "^v([\\d+\\.]*\\d+).*"
+
+  - recipe: "recipes-support/rauc-hawkbit-updater/rauc-hawkbit-updater_$PV.bb"
+    git_tag:
+      url: "https://github.com/rauc/rauc-hawkbit-updater.git"
+      version_pattern: "^v([\\d+\\.]*\\d+)$"
+      version_order: semver
+    tarball:
+      url: "https://github.com/rauc/rauc-hawkbit-updater/releases/download/v$PV/rauc-hawkbit-updater-$PV.tar.xz"
