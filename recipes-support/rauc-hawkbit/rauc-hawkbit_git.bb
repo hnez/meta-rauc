@@ -3,7 +3,7 @@
 LICENSE = "LGPL-2.1-or-later"
 LIC_FILES_CHKSUM = " \
     file://COPYING;md5=4fbd65380cdd255951079008b364516c \
-    file://README.rst;beginline=114;endline=132;md5=aff2a45fabc5c8d959b72f97ffc77465 \
+    file://README.rst;beginline=114;endline=132;md5=a569a9868bb81fb591cf2cdfdf61db1d \
     "
 
 SUMMARY = "hawkBit client for RAUC"
