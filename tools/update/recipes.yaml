@@ -1,0 +1,105 @@
+recipes:
+  - recipe: "recipes-bsp/dt-utils/dt-utils_$PV.bb"
+    template: "template.bb.jinja2"
+    git_tag:
+      url: "https://git.pengutronix.de/git/tools/dt-utils"
+      version_pattern: "^v([\\d+\\.]*\\d+)$"
+      version_order: semver
+    header: |-
+      DESCRIPTION = "device-tree and barebox-related tools"
+      HOMEPAGE = "http://git.pengutronix.de/?p=tools/dt-utils.git"
+      SECTION = "base"
+      LICENSE = "GPL-2.0-only"
+      LIC_FILES_CHKSUM = "file://COPYING;md5=18d902a0242c37a4604224b47d02f802"
+      DEPENDS = "udev"
+
+      SRC_URI = "git://git.pengutronix.de/git/tools/dt-utils;protocol=https;branch=${SRCBRANCH}"
+    trailer: |-
+      inherit autotools pkgconfig gettext
+
+      NOAUTOPACKAGEDEBUG = "1"
+
+      FILES:${PN}-dbg = "${libdir}/.debug/"
+
+      PACKAGES =+ "${PN}-barebox-state ${PN}-barebox-state-dbg"
+      FILES:${PN}-barebox-state = "${bindir}/barebox-state"
+      FILES:${PN}-barebox-state-dbg = "${bindir}/.debug/barebox-state"
+
+      PACKAGES =+ "${PN}-fdtdump ${PN}-fdtdump-dbg"
+      FILES:${PN}-fdtdump = "${bindir}/fdtdump"
+      FILES:${PN}-fdtdump-dbg = "${bindir}/.debug/fdtdump"
+
+      PACKAGES =+ "${PN}-dtblint ${PN}-dtblint-dbg"
+      FILES:${PN}-dtblint = "${bindir}/dtblint"
+      FILES:${PN}-dtblint-dbg = "${bindir}/.debug/dtblint"
+
+  - recipe: "recipes-casync/casync/casync_git.bb"
+    template: "template.bb.jinja2"
+    git_branch:
+      url: "https://github.com/systemd/casync.git"
+      branch: main
+      version_pattern: "^v([\\d+\\.]*\\d+).*"
+    header: |-
+      SUMMARY = "Content-Addressable Data Synchronization Tool"
+      HOMEPAGE = "https://github.com/systemd/casync"
+      LICENSE = "LGPL-2.1-or-later"
+      LIC_FILES_CHKSUM = "file://LICENSE.LGPL2.1;md5=4fbd65380cdd255951079008b364516c"
+
+      DEPENDS = "xz curl openssl acl zstd"
+    trailer: |-
+      SRC_URI = "git://github.com/systemd/casync.git;protocol=https;branch=${SRCBRANCH}"
+
+      inherit meson pkgconfig
+
+      EXTRA_OEMESON += "-Dselinux=false -Dman=false -Dudevrulesdir=${nonarch_base_libdir}/udev/rules.d/"
+
+      BBCLASSEXTEND = "native nativesdk"
+
+      PACKAGECONFIG:class-native = ""
+      PACKAGECONFIG:class-nativesdk = ""
+      PACKAGECONFIG ?= "fuse udev"
+
+      PACKAGECONFIG[fuse] = "-Dfuse=true,-Dfuse=false,fuse"
+      PACKAGECONFIG[udev] = "-Dudev=true,-Dudev=false,udev"
+
+      FILES:${PN} += "${datadir}/bash-completion"
+
+  - recipe: "recipes-core/rauc/rauc-$PV.inc"
+    template: "template.bb.jinja2"
+    github_release:
+      project: rauc/rauc
+      version_pattern: "^v([\\d+\\.]*\\d+)$"
+      version_order: semver
+    trailer: |-
+      UPSTREAM_CHECK_URI = "https://github.com/${BPN}/${BPN}/releases"
+
+  - recipe: "recipes-core/rauc/rauc-git.inc"
+    template: "template.bb.jinja2"
+    git_branch:
+      url: "https://github.com/rauc/rauc.git"
+      branch: master
+      version_pattern: "^v([\\d+\\.]*\\d+).*"
+    header: |-
+      SRC_URI = "git://github.com/rauc/rauc.git;protocol=https;branch=${SRCBRANCH}"
+    trailer: |-
+      RAUC_USE_DEVEL_VERSION[doc] = "Global switch to enable RAUC development (git) version."
+      RAUC_USE_DEVEL_VERSION ??= "-1"
+      DEFAULT_PREFERENCE ??= "${RAUC_USE_DEVEL_VERSION}"
+
+  - recipe: "recipes-support/rauc-hawkbit-updater/rauc-hawkbit-updater_git.bb"
+    template: "template.bb.jinja2"
+    git_branch:
+      url: "https://github.com/rauc/rauc-hawkbit-updater.git"
+      branch: master
+      version_pattern: "^v([\\d+\\.]*\\d+).*"
+    trailer: |-
+      DEFAULT_PREFERENCE = "-1"
+
+  - recipe: "recipes-support/rauc-hawkbit-updater/rauc-hawkbit-updater_$PV.bb"
+    template: "template.bb.jinja2"
+    github_release:
+      project: rauc/rauc-hawkbit-updater
+      version_pattern: "^v([\\d+\\.]*\\d+)$"
+      version_order: semver
+    header: |-
+      include rauc-hawkbit-updater.inc
