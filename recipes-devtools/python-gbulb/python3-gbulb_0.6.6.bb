@@ -11,4 +11,4 @@ SRC_URI[sha256sum] = "b66bb1637e956a605636ac2820747583983715a87742beaddeb2e41da3
 # python3-misc is needed for the signal module
 RDEPENDS:${PN} = "python3-pygobject python3-asyncio python3-misc"
 
-inherit pypi python_setuptools_build_meta
+inherit pypi setuptools3
