@@ -101,7 +101,7 @@ recipes:
       # python3-misc is needed for the signal module
       RDEPENDS:${PN} = "python3-pygobject python3-asyncio python3-misc"
 
-      inherit pypi setuptools3
+      inherit pypi python_setuptools_build_meta
 
   - recipe: "recipes-support/rauc-hawkbit-updater/rauc-hawkbit-updater_git.bb"
     template: "template.bb.jinja2"
@@ -131,7 +131,7 @@ recipes:
       LICENSE = "LGPL-2.1-or-later"
       LIC_FILES_CHKSUM = " \
           file://COPYING;md5=4fbd65380cdd255951079008b364516c \
-          file://README.rst;beginline=114;endline=132;md5=aff2a45fabc5c8d959b72f97ffc77465 \
+          file://README.rst;beginline=114;endline=132;md5=a569a9868bb81fb591cf2cdfdf61db1d \
           "
 
       SUMMARY = "hawkBit client for RAUC"
