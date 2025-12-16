@@ -101,7 +101,7 @@ recipes:
       # python3-misc is needed for the signal module
       RDEPENDS:${PN} = "python3-pygobject python3-asyncio python3-misc"
 
-      inherit pypi setuptools3
+      inherit pypi python_setuptools_build_meta
 
   - recipe: "recipes-support/rauc-hawkbit-updater/rauc-hawkbit-updater_git.bb"
     template: "template.bb.jinja2"
