@@ -2,10 +2,10 @@
 
 SRC_URI = "git://github.com/rauc/rauc.git;protocol=https;branch=${SRCBRANCH}"
 
-# Version v1.15-13-ge5c0eb2 commited 2025-12-04 15:22:49 +0100
-PV = "1.15+git"
+# Version v1.15.1 commited 2026-01-05 13:22:29 +0100
+PV = "1.15.1+git"
 SRCBRANCH = "master"
-SRCREV = "e5c0eb289d5cbf473006bf781996d91faadf0b8d"
+SRCREV = "fac72b8347eed46f300d3a8a06e847ce1aa9d677"
 
 RAUC_USE_DEVEL_VERSION[doc] = "Global switch to enable RAUC development (git) version."
 RAUC_USE_DEVEL_VERSION ??= "-1"
