@@ -4,6 +4,7 @@ SRC_URI = " \
 
 PV = "1.15.1+git"
 
+# Commit created on 0000-00-00 00:00:00 +0100
 SRCREV = "63914bf8f4bdde4dc869d1999b289e91e43206b2"
 
 RAUC_USE_DEVEL_VERSION[doc] = "Global switch to enable RAUC development (git) version."
