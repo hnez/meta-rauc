@@ -12,8 +12,6 @@ PV = "2+git"
 SRCBRANCH = "main"
 SRCREV = "b4b7e5606f785572b78a43626a27a45fe3df2fbd"
 
-EXCLUDE_FROM_WORLD = "1"
-
 SRC_URI = "git://github.com/systemd/casync.git;protocol=https;branch=${SRCBRANCH}"
 
 inherit meson pkgconfig
