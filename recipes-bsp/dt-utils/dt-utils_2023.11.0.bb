@@ -13,13 +13,9 @@ SRC_URI = "git://git.pengutronix.de/git/tools/dt-utils;protocol=https;branch=${S
 SRCBRANCH = "master"
 SRCREV = "848841cd9459e85c8419ddca567fb4e49bbf711c"
 
-inherit meson pkgconfig gettext
+inherit autotools pkgconfig gettext
 
 NOAUTOPACKAGEDEBUG = "1"
-
-PACKAGECONFIG ??= "barebox-state"
-
-PACKAGECONFIG[barebox-state] = "-Dbarebox-state=true,-Dbarebox-state=false,,udev"
 
 FILES:${PN}-dbg = "${libdir}/.debug/"
 
