@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.LGPL2.1;md5=4fbd65380cdd255951079008b364516c"
 
 DEPENDS = "xz curl openssl acl zstd"
 
-# Commit created on 0000-00-00 00:00:00 +0100
+# Commit created on 2025-09-22 14:02:05 +0200
 SRCREV = "b4b7e5606f785572b78a43626a27a45fe3df2fbd"
 PV = "2+git"
 

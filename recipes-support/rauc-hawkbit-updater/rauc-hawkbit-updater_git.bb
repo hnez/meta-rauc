@@ -1,8 +1,8 @@
 include rauc-hawkbit-updater.inc
 
-# Commit created on 0000-00-00 00:00:00 +0100
+# Commit created on 2026-01-31 22:04:24 +0100
 SRC_URI = "git://github.com/rauc/rauc-hawkbit-updater.git;protocol=https;branch=master"
-SRCREV = "2711c0e02781eb9d97285c87197f1bafef75d0d1"
+SRCREV = "2d826bd355cb4f88db15eb37e8e70abd6e704c43"
 PV = "1.4+git"
 
 DEFAULT_PREFERENCE = "-1"
